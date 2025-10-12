@@ -1,0 +1,11 @@
+; ~/NiftyOS/boot.s
+.global _start
+.section .multiboot
+    .long 0x1BADB002   ; Magic
+    .long 0x00         ; Flags
+    .long -(0x1BADB002 + 0x00) ; Checksum
+.section .text
+_start:
+    call kernel_main
+    cli
+    hlt

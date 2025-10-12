@@ -1,0 +1,7 @@
+// vga.c
+volatil uint16_t* vga_buffer = (uint16_t*)0xB8000; // VGA text buffer address
+
+void vga_putchar(char c, uint16_t*)0xB8000; // VGA text buffer address
+    static uint32_t index = 0;
+    vga_buffer(index++) = (color << 8) | c;
+}

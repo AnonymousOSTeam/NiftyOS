@@ -1,0 +1,14 @@
+ // vesafb.c
+ struct vbe_mode_info {
+    uint16_t attributes;
+    uint8_t window_a, window_b;
+    // ... (Full struct: https://wiki.osdev.org/VESA_Video_Modes)
+ } __attribute__((packed));
+
+ void init_vesa() {
+     struct vbe_mode_info* vmi = (struct vbe_mode_info*)0x2000; // BIOS data area
+     // Call VBE BIOS interrupt (real-mode only)
+     __asm__ volatile("int $0x10" : : "a"(0x4F01), "c"(0x118), "d"(vmi));
+}
+
+

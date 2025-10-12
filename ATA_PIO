@@ -1,0 +1,9 @@
+// ata.c 
+void ata_read(uint32_t lba, uint8_t* buffer) {
+    outb(0x1F6, 0xE0 | ((lba >> 24) & 0x0F)); // LBA high bits
+    outb(0x1F2, 1); // Read 1 sector 
+    outb(0x1F3, lba & 0xFF); // LBA low bits
+    // ... (Send ATA READ command) 
+    insw(0x1F0, buffer, 256); // Read 512 bytes into buffer
+}
+

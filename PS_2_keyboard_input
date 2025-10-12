@@ -1,0 +1,6 @@
+// keyboard.c 
+uint8_t keyboard_read() {
+    while (!(inb(0x64) & 0x01)); // Wait for data
+    return inb(0x60); // Return scancode
+}
+
